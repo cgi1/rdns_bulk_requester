@@ -15,18 +15,18 @@ import validators
 
 
 def init_logging():
-    logFormatter = logging.Formatter("[%(asctime)s] %(levelname)s::%(module)s::%(funcName)s() %(message)s")
+    #logFormatter = logging.Formatter("[%(asctime)s] %(levelname)s::%(module)s::%(funcName)s() %(message)s")
     rootLogger = logging.getLogger()
     LOG_DIR = os.getcwd() + '/' + 'logs'
     if not os.path.exists(LOG_DIR):
         os.makedirs(LOG_DIR)
     timestamp = datetime.datetime.now()
     fileHandler = logging.FileHandler("{0}/{1}_{2}.log".format(LOG_DIR, timestamp, "create_nirsoft_data"))
-    fileHandler.setFormatter(logFormatter)
+    #fileHandler.setFormatter(logFormatter)
     rootLogger.addHandler(fileHandler)
     rootLogger.setLevel(logging.DEBUG)
     consoleHandler = logging.StreamHandler()
-    consoleHandler.setFormatter(logFormatter)
+    #consoleHandler.setFormatter(logFormatter)
     rootLogger.addHandler(consoleHandler)
     return rootLogger
 
@@ -111,18 +111,18 @@ def rate_list_of_networks(networks_to_rate, complete=False):
     for network_to_rate in networks_to_rate:
         ips_in_range = get_ips_in_range(start=network_to_rate['NET_START'], end=network_to_rate['NET_END'])
         if not complete:
-            a_thousand_random_ips = random.sample(ips_in_range, 1000)
+            ips_to_rate = random.sample(ips_in_range, 1000)
         else:
-            a_thousand_random_ips = ips_in_range
-        for random_ip in a_thousand_random_ips:
-            do_query(ip=random_ip)
+            ips_to_rate = ips_in_range
+        for ip_to_rate in ips_to_rate:
+            do_query(ip=ip_to_rate)
 
 
 def do_query(ip):
     try:
         host_by_addr = socket.gethostbyaddr(ip)
-        print(host_by_addr)
-        logging.debug(host_by_addr)
+        if host_by_addr is not None and len(host_by_addr) > 0:
+            logging.debug(host_by_addr[0])
     except socket.herror:
         print("Unknown host(%s)" % ip)
 
