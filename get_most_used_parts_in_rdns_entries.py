@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# -------------------------------------------------------------------------------
+# Purpose:     Read a file and show most occurring substrings
+#
+# Author:      Christoph Giese <github: cgi1>
+#
+# Created:     05.11.2017
+# Copyright:   (c) Christoph Giese 2017
+# Licence:     MIT
+# -------------------------------------------------------------------------------
+
+
 import argparse
 import operator
 from collections import Counter

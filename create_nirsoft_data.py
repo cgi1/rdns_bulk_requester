@@ -1,7 +1,14 @@
-"""
-A small script to bulk query rdns
-@author: Christoph Giese <cgi1>
-"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# -------------------------------------------------------------------------------
+# Purpose:     A small script to bulk query rdns
+#
+# Author:      Christoph Giese <github: cgi1>
+#
+# Created:     05.11.2017
+# Copyright:   (c) Christoph Giese 2017
+# Licence:     MIT
+# -------------------------------------------------------------------------------
 
 import os
 import random
